@@ -1658,3 +1658,24 @@ export default App
 - This is called a Single Page Application (SPA)
 - only made up of 1 HTML file
 - we use react to create multiple pages
+
+<br>
+
+**Auto format document**
+
+- command palette `(Ctrl + Shift + P)`
+- Search and Click `Format Document`
+
+**Changing document title based on pages**
+
+- in component, just use the `<title>` tag to change title
+
+```jsx
+function component() {
+  return (
+    <>
+      <title>Page Title</title>
+    </>
+  );
+}
+```
