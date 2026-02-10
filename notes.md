@@ -1575,3 +1575,5 @@ import ChatMessage from './components/ChatMessage';
 
 # 6: Routing and Git with React
 
+- Create a folder to group all the pages together
+- Create a React file component for each page of the website
