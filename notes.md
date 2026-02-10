@@ -1575,5 +1575,86 @@ import ChatMessage from './components/ChatMessage';
 
 # 6: Routing and Git with React
 
+**React Setup Folder Structure**
+
 - Create a folder to group all the pages together
 - Create a React file component for each page of the website
+
+<hr>
+
+## 6.1 Routing
+
+**Routing**
+
+- create multiple pages in React
+- normally, one page is in one HTML file
+- normal HTML files has repeated code (title, link, headers)
+- change one thing in one page requires changing all the pages
+- routing allows the creation of multiple pages with 1 HTML file
+- allowing reusable code to be shared
+- to use routing, install `react-router` using `npm`
+
+**React Router**
+
+- There are multiple different use cases of the `react-router` package
+- there is the `framework, data` and `declarative` versions of each
+- each mode gives different amounts of control
+
+<br>
+
+- `declarative` version of `react-router`
+- wrap the `<App />` component with `<BrowserRouter></BrowserRouter>`
+- this is the `Main.jsx` file
+
+```jsx
+import { BrowserRouter } from 'react-router'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>,
+);
+```
+
+- in the `App.jsx` file
+- insert the `<Routes>` component
+
+**`<Routes>` Component**
+
+- tells React all the pages that are in our website
+- to add a page into the website
+- use another component named `<Route>`
+
+**`<Route>` Component**
+
+- takes two props `path` and `element`
+- the default prop `index` is equivalent to `path='/'`
+
+```jsx
+import HomePage from './pages/HomePage'
+import { Routes, Route } from 'react-router'
+import './App.css'
+
+function App() {
+
+  return (
+    <Routes>
+      <Route index element={<HomePage />} />
+      
+      <Route path='checkout' element={<div>Checkout</div>}/>
+    </Routes>
+  )
+}
+
+export default App
+```
+
+- This is called a Single Page Application (SPA)
+- only made up of 1 HTML file
+- we use react to create multiple pages
