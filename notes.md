@@ -1681,3 +1681,28 @@ function component() {
 ```
 
 - be sure to update all `href's` to the corresponding paths
+- by default, all `<a>` tags reload the page
+- using routing in a SPA, we do not have to reload every page
+- instead use jsx and router to change pages
+- react-router provides `<Link>` component 
+- to change pages without reloading
+
+```jsx
+import { Link } from 'react-router';
+
+function component() {
+  return (
+    <>
+      <div className="left-section">
+          <Link to="/" className="header-link">
+              <img className="logo"
+                  src="images/logo-white.png" />
+              <img className="mobile-logo"
+                  src="images/mobile-logo-white.png" />
+          </Link>
+      </div>
+    </>
+  );
+}
+
+```
