@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import checkoutLockIcon from '../../assets/images/icons/checkout-lock-icon.png'
 import './CheckoutHeader.css'
 
 function CheckoutHeader() {
@@ -18,7 +19,7 @@ function CheckoutHeader() {
                 </div>
 
                 <div className="checkout-header-right-section">
-                    <img src="images/icons/checkout-lock-icon.png" />
+                    <img src={checkoutLockIcon} />
                 </div>
             </div>
         </div>
