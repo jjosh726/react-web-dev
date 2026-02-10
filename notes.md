@@ -1468,7 +1468,7 @@ function ChatMessages({ chatMessages }) {
 - highlights problems in JavaScript code
 - install extension `eslint` in vscode
 
-**index.html**
+**/**
 - contains all the HTML code for React Project
 - loads JSX (/src/main.jsx) from a different file
 
@@ -1679,3 +1679,5 @@ function component() {
   );
 }
 ```
+
+- be sure to update all `href's` to the corresponding paths
