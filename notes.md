@@ -1723,3 +1723,9 @@ function component() {
 
 - in css, use for example `.orders-link.active`
 - to specially style this link
+
+**404 Pages**
+
+- use `<Route path="*">` to target all
+- remaining pages not covered by existing routes
+- it matches to any URL path
