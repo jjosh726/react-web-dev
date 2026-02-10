@@ -1706,3 +1706,20 @@ function component() {
 }
 
 ```
+
+**`<NavLink>` Component**
+
+- `<NavLink>` is a special component 
+- provided by `react-router` that functions like `<Link>`
+- it remembers which page is loaded
+
+<br>
+
+- for example, if the orders page is active
+- it adds the active class to the orders link
+- `<NavLink className="orders-link active">`
+
+<br>
+
+- in css, use for example `.orders-link.active`
+- to specially style this link
