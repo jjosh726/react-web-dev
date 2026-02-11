@@ -1733,3 +1733,8 @@ function component() {
 <hr>
 
 # 7: React with Backend, Data Fetching
+
+## 7.1 Backend
+
+- manages all the data
+- share data between the computers
