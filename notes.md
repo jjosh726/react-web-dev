@@ -1734,7 +1734,48 @@ function component() {
 
 # 7: React with Backend, Data Fetching
 
-## 7.1 Backend
+## 7.1 Date Fetching
+
+**Backend**
 
 - manages all the data
 - share data between the computers
+
+**Asynchronous code**
+
+- code that does not finish right away
+- such as `fetch`
+- `fetch` returns a `promise`
+- `Promise` lets us wait for asynchronous code to finish
+
+**Review of Fetch**
+
+```
+fetch returns a promise
+          |
+          |
+after promise resolve, 
+response object passed as parameter of next .then function
+          |
+          |
+to get content of response object,
+run .then on response.json()
+```
+
+```jsx
+fetch('http://localhost:3000/api/products')
+    .then(response => {
+        response.json().then(data => {
+          console.log(data)
+        })
+    })
+
+// equaivalent to
+fetch('http://localhost:3000/api/products')
+    .then(response => {
+        return response.json()
+    })
+    .then(data => {
+        console.log(data)
+    })
+```
