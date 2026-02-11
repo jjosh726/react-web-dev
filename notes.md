@@ -1779,3 +1779,21 @@ fetch('http://localhost:3000/api/products')
         console.log(data)
     })
 ```
+
+## 7.2 Axios
+
+- node package
+- cleaner way to make requests to the backend
+- import axios and run the code which is equivalent to the above
+
+```jsx
+axios.get('http://localhost:3000/api/products')
+    .then(response => {
+        console.log(response.data);
+    })
+```
+
+- if GET request only needs to be run once
+- place it in a useEffect and have the dependency array be empty
+- `<StrictMode>` runs useEffect twice ONLY during development mode
+- thus the console displays a response object twice
