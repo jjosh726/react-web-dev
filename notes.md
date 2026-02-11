@@ -1729,3 +1729,7 @@ function component() {
 - use `<Route path="*">` to target all
 - remaining pages not covered by existing routes
 - it matches to any URL path
+
+<hr>
+
+# 7: React with Backend, Data Fetching
