@@ -1848,3 +1848,9 @@ export default defineConfig({
 - `images/products/shirt.png`
 - becomes `/images/products/shirt.png`
 - `<base href="/" />`
+
+**Other notes**
+
+- when a fragment needs to be used but also needs a key prop
+- import `Fragment` component from `react`
+- `<Fragment key={id}></Fragment>` full fragment syntax can have a key
