@@ -41,7 +41,7 @@ function OrdersPage({ cart }) {
 
                                 <OrderHeader order={order} />
 
-                                <OrderDetailsGrid products={products} />
+                                <OrderDetailsGrid order={order} products={products} />
                                 
                             </div>
                         );

@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import dayjs from 'dayjs';
 import buyAgainIcon from '../../assets/images/icons/buy-again.png'
 
-function OrderDetailsGrid({ products }) {
+function OrderDetailsGrid({ order, products }) {
     return (
         <div className="order-details-grid">
             {products.map(orderProduct => {
@@ -32,7 +32,7 @@ function OrderDetailsGrid({ products }) {
                         </div>
 
                         <div className="product-actions">
-                            <Link to="/tracking">
+                            <Link to={`/tracking/${order.id}/${product.id}`}>
                                 <button className="track-package-button button-secondary">
                                     Track package
                                 </button>

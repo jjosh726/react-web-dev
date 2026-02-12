@@ -1902,3 +1902,23 @@ useEffect(() => {
 - for example, `<StrictMode>` applies `useEffect` twice
 - running it twice helps to catch bugs and generates HTML twice
 - only happens during development for app
+
+**useParams**
+
+- gets URL parameters
+- to create dynamic web page
+
+```jsx
+function TrackingPage({ cart }) {
+    const params = useParams();
+    console.log(params);
+}
+
+// in console:
+
+// orderId: 
+// "27cba69d-4c3d-4098-b42d-ac7fa62b7664"
+// productId: 
+// "83d4ca15-0f35-48f5-b7a3-1ea210004f2e"
+
+```
