@@ -4,13 +4,13 @@ import { useEffect, useState, Fragment } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-import Header from '../components/Header';
+import Header from '../../components/Header';
 
-import buyAgainIcon from '../assets/images/icons/buy-again.png'
-import ordersFavicon from '../assets/images/orders-favicon.png'
+import buyAgainIcon from '../../assets/images/icons/buy-again.png'
+import ordersFavicon from '../../assets/images/orders-favicon.png'
 
 import './OrdersPage.css'
-import { formatMoney } from '../utils/money';
+import { formatMoney } from '../../utils/money';
 
 function OrdersPage({ cart }) {
     const [orders, setOrders] = useState([]);
