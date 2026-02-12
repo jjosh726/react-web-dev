@@ -9,17 +9,11 @@ function OrderSummary({ deliveryOptions, cart }) {
             {deliveryOptions.length > 0 && cart.map(cartItem => {
                 const { productId, product, quantity, deliveryOptionId } = cartItem;
 
-                const selectedDeliveryOption = deliveryOptions.find(deliveryOption => {
-                    // loop through each delivery option
-                    // the first item that returns true is theb result
-
-                    return deliveryOption.id === deliveryOptionId;
-                });
-
                 return (
                     <div key={productId} className="cart-item-container">
                         <DeliveryDate 
-                            selectedDeliveryOption={selectedDeliveryOption} 
+                            deliveryOptions={deliveryOptions}
+                            cartItem={cartItem}
                         />
 
                         <div className="cart-item-details-grid">
