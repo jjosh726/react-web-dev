@@ -1894,3 +1894,11 @@ useEffect(() => {
       getHomeData();
   }, []);
 ```
+
+**idempotency**
+
+- a property where applying an operation multiple times 
+- yields the same result as applying it once
+- for example, `<StrictMode>` applies `useEffect` twice
+- running it twice helps to catch bugs and generates HTML twice
+- only happens during development for app
