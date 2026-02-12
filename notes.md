@@ -1780,6 +1780,8 @@ fetch('http://localhost:3000/api/products')
     })
 ```
 
+<hr>
+
 ## 7.2 Axios
 
 - node package
@@ -1797,3 +1799,52 @@ axios.get('http://localhost:3000/api/products')
 - place it in a useEffect and have the dependency array be empty
 - `<StrictMode>` runs useEffect twice ONLY during development mode
 - thus the console displays a response object twice
+
+<br>
+
+- instead of typing the full URL path
+- such as `'http://localhost:3000/api/products'`
+- we can set up a shortcut in `Vite`
+
+<br>
+
+- open `vite.config.js`
+- add the server object such as this
+
+```jsx
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server : {
+    proxy : {
+      '/api' : {
+        target : 'http://localhost:3000'
+      }
+    }
+  }
+})
+```
+
+- if the URL path starts with `/api`
+- the request will head straight to the localhost port
+
+<br>
+
+- add the `/image` 
+- route to fetch images 
+- from backend instead of frontend folders
+
+```jsx
+'/images' : {
+    target : 'http://localhost:3000'
+}
+```
+
+- in index.html, add a base tag
+- to add / in front of any relative URLs
+- `images/products/shirt.png`
+- becomes `/images/products/shirt.png`
+- `<base href="/" />`
