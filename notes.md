@@ -1854,3 +1854,43 @@ export default defineConfig({
 - when a fragment needs to be used but also needs a key prop
 - import `Fragment` component from `react`
 - `<Fragment key={id}></Fragment>` full fragment syntax can have a key
+
+## 7.3 useEffect special conditions
+
+- when running useEffect to run asynchronous code
+- it is cleaner to use `async/await` than `.then promises`
+- but using `async/await` returns a promise
+- `useEffect` has its own rules
+- it can only return `nothing` or a `cleanup function`
+
+Example:
+
+```jsx
+useEffect(() => {
+  window.addEventListener('scroll', () => {
+
+  });
+
+  return () => {
+    window.removeEventListener('scroll');
+  }
+})
+```
+
+**useEffect with async/await**
+
+- create a new function within `useEffect`
+- run the function
+- `useEffect` wont return any promises, which means it will work
+
+```jsx
+  useEffect(() => {
+      const getHomeData = async () => {
+          const response = await axios.get('/api/products')
+  
+          setProducts(response.data);
+      }
+
+      getHomeData();
+  }, []);
+```

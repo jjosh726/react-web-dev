@@ -3,14 +3,14 @@ import Header from '../components/Header';
 import trackingFavicon from '../assets/images/tracking-favicon.png'
 import './TrackingPage.css'
 
-function TrackingPage() {
+function TrackingPage({ cart }) {
     return (
         <>
             <title>Tracking</title>
 
             <link rel="icon" type="image/svg+xml" href={trackingFavicon} />
 
-            <Header />
+            <Header cart={cart}/>
 
             <div className="tracking-page">
                 <div className="order-tracking">
