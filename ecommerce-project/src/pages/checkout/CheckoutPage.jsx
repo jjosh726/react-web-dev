@@ -6,7 +6,7 @@ import cartFavicon from '../../assets/images/cart-favicon.png'
 import './CheckoutPage.css'
 import PaymentSummary from './PaymentSummary';
 
-function CheckoutPage({ cart }) {
+function CheckoutPage({ cart, loadCart }) {
     const [deliveryOptions, setDeliveryOptions] = useState([]);
     const [paymentSummary, setPaymentSummary] = useState(null);
 
@@ -21,7 +21,7 @@ function CheckoutPage({ cart }) {
         }
 
         fetchCheckoutData();
-    }, []);
+    }, [cart]);
 
     return (
         <>
@@ -38,6 +38,7 @@ function CheckoutPage({ cart }) {
                     <OrderSummary
                         deliveryOptions={deliveryOptions}
                         cart={cart}
+                        loadCart={loadCart}
                     />
 
                     <PaymentSummary

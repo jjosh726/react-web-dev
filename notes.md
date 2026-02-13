@@ -1952,3 +1952,10 @@ function TrackingPage({ cart }) {
 1. create a `useState` function to store the `state variable` and its `setter function`
 2. in the input declaration, the `value={state variable}`
 3. in the input declaration, the `onChange/onClick` should use the `setter function` with `event.target.value`
+
+## 8.1 axios HTTP methods
+
+- `axios.get(urlPath, data, options)`
+- `axios.post(urlPath, data, options)`
+- `axios.put(urlPath, data, options)`
+- `axios.delete(urlPath, data, options)`
