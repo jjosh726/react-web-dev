@@ -1922,3 +1922,33 @@ function TrackingPage({ cart }) {
 // "83d4ca15-0f35-48f5-b7a3-1ea210004f2e"
 
 ```
+
+<hr>
+
+# 8: Data Mutation
+
+**axios.post( url, reqBody )**
+
+- create data in the backend
+
+**useState note**
+
+- when handling multiple controlled inputs in one component
+- such as each product having a quantity selector
+
+<br>
+
+- useState might share all the quantities between the component
+- meaning that all quantity selectors will share one value
+
+<br>
+
+- move the useState into the code that generates each item (product)
+- hooks must always be within the top level of a component
+- so seperate each item into its own component
+
+**controlled input note**
+
+1. create a `useState` function to store the `state variable` and its `setter function`
+2. in the input declaration, the `value={state variable}`
+3. in the input declaration, the `onChange/onClick` should use the `setter function` with `event.target.value`
