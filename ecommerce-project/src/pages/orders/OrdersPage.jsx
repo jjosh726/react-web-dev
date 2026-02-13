@@ -10,7 +10,7 @@ import './OrdersPage.css'
 import OrderHeader from './OrderHeader';
 import OrderDetailsGrid from './OrderDetailsGrid';
 
-function OrdersPage({ cart }) {
+function OrdersPage({ cart, loadCart }) {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
@@ -41,7 +41,7 @@ function OrdersPage({ cart }) {
 
                                 <OrderHeader order={order} />
 
-                                <OrderDetailsGrid order={order} products={products} />
+                                <OrderDetailsGrid order={order} products={products} loadCart={loadCart} />
                                 
                             </div>
                         );

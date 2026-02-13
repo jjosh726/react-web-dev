@@ -1973,3 +1973,7 @@ const createOrder = async () => {
     navigate('/orders');
 }
 ```
+
+<hr>
+
+# 9: Automated Tests
