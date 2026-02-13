@@ -20,6 +20,7 @@ function OrderSummary({ deliveryOptions, cart, loadCart }) {
                             <CartItemDetails
                                 product={product}
                                 quantity={quantity}
+                                loadCart={loadCart}
                             />
 
                             <DeliveryOptions 
