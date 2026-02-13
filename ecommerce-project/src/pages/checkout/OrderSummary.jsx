@@ -7,7 +7,7 @@ function OrderSummary({ deliveryOptions, cart, loadCart }) {
         <div className="order-summary">
 
             {deliveryOptions.length > 0 && cart.map(cartItem => {
-                const { productId, product, quantity, deliveryOptionId } = cartItem;
+                const { productId, product,  deliveryOptionId } = cartItem;
 
                 return (
                     <div key={productId} className="cart-item-container">
@@ -19,7 +19,7 @@ function OrderSummary({ deliveryOptions, cart, loadCart }) {
                         <div className="cart-item-details-grid">
                             <CartItemDetails
                                 product={product}
-                                quantity={quantity}
+                                cartItem={cartItem}
                                 loadCart={loadCart}
                             />
 
