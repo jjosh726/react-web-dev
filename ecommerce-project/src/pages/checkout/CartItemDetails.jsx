@@ -12,16 +12,29 @@ function CartItemDetails({ product, cartItem, loadCart }) {
             return;
         }
 
+        await updateQuantity();
+    }
+
+    const handleQuantityKey = async (event) => {
+        if (event.key === 'Enter') {
+            await updateQuantity();
+        } else if (event.key === 'Escape') {
+            setQuantity(cartItem.quantity);
+            setQuantityUpdated(false);
+        }
+    }
+
+    const updateQuantityInput = (event) => {
+        setQuantity(parseInt(event.target.value));
+    }
+
+    const updateQuantity = async () => {
         await axios.put(`/api/cart-items/${product.id}`, {
             quantity
         });
         await loadCart();
 
         setQuantityUpdated(false);
-    }
-
-    const updateQuantity = (event) => {
-        setQuantity(parseInt(event.target.value));
     }
 
     const deleteCartItem = async () => {
@@ -45,11 +58,18 @@ function CartItemDetails({ product, cartItem, loadCart }) {
                     <span>
                         Quantity: 
                         <input 
+                            className="update-quantity-input" 
+                            style={{ 
+                                display : quantityUpdated 
+                                ? "inline-block" 
+                                : "none" }}
+
                             value={quantity}
                             type="number" 
-                            className="update-quantity-input" 
-                            style={{ display : quantityUpdated ? "inline-block" : "none" }}
-                            onChange={updateQuantity}
+
+                            onChange={updateQuantityInput}
+                            onKeyDown={handleQuantityKey}
+
                         />
                         <span className="quantity-label">{cartItem.quantity}</span>
                     </span>
