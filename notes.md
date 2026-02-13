@@ -1959,3 +1959,17 @@ function TrackingPage({ cart }) {
 - `axios.post(urlPath, data, options)`
 - `axios.put(urlPath, data, options)`
 - `axios.delete(urlPath, data, options)`
+
+**bonus: route to a different page using react router**
+
+- use the hook `useNavigate` provided by `react-router`
+
+```jsx
+const navigate = useNavigate();
+
+const createOrder = async () => {
+    await axios.post('/api/order');
+    await loadCart();
+    navigate('/orders');
+}
+```
