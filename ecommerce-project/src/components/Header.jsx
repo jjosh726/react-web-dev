@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import searchIcon from '../assets/images/icons/search-icon.png'
 import cartIcon from '../assets/images/icons/cart-icon.png'
 import './Header.css'
@@ -6,12 +6,10 @@ import { useState } from 'react';
 
 function Header({ cart }) {
     const [searchText, setSearchText] = useState('');
+    const navigate = useNavigate();
     
     const updateSearchText = (event) => setSearchText(event.target.value);
-    
-    const searchItem = () => {
-        console.log(searchText);
-    }
+    const searchItem = () => navigate(`/?search=${searchText}`);
 
     let totalQuantity = 0;
     cart.forEach(cartItem => totalQuantity += cartItem.quantity );
