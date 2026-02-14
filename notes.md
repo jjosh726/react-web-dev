@@ -2182,3 +2182,64 @@ describe('Product Component', () => {
 
 });
 ```
+
+## 9.4 @testing-libary/user-event
+
+- to `Test User Interactions`
+- for example test add to cart button
+- by simulating events
+
+**@testing-libary/user-event**
+
+- userEvent : create user event
+- - .setup() : simulate user
+
+<br>
+
+- const user = userEvent.setup();
+- - .click( element ) : simulate click, `asynchronous` function
+
+<br>
+
+- when simulating clicks that trigger backend interactions
+- or any asynchronous code
+- like add to cart triggering axios to post
+- you can mock axios to prevent backend requests
+- you can mock an entire npm package as well
+- `vi.mock('axios')` : creates a fake import of axios
+- `import axios from 'axios'` : this is now a fake version of axios
+
+```jsx
+import { it, expect, describe, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+// FAKE VERSION OF AXIOS IMPORTED
+import axios from 'axios';
+import Product from './Product';
+
+describe('', () => {
+  it('', async () => {
+
+    ...
+
+    render(<Product ... />);
+
+    // create fake version of axios
+    vi.mock('axios');
+
+    const user = userEvent.setup();
+    const button = screen.getByTestId('add-to-cart-button');
+    
+    await user.click(button);
+
+    expect(axios.post).toHaveBeenCalledWith(
+        '/api/cart-items', 
+        {
+            productId : "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+            quantity : 1
+        }
+    )
+  })
+})
+```
