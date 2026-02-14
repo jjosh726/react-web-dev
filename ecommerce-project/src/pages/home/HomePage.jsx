@@ -4,19 +4,24 @@ import axios from 'axios';
 import homeFavicon from '../../assets/images/home-favicon.png'
 import './HomePage.css'
 import ProductsGrid from './ProductsGrid.jsx';
+import { useSearchParams } from 'react-router';
 
 function HomePage({ cart, loadCart }) {
+    const [searchParams] = useSearchParams();
     const [products, setProducts] = useState([]);
 
+    const search = searchParams.get('search');
+
     useEffect(() => {
+        const apiUrl = `/api/products${search ? `?search=${search}` : ""}`;
+
         const getHomeData = async () => {
-            const response = await axios.get('/api/products')
-    
+            const response = await axios.get(apiUrl);
             setProducts(response.data);
         }
 
         getHomeData();
-    }, []);
+    }, [search]);
 
     return (
         <>
