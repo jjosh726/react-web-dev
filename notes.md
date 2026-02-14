@@ -1976,4 +1976,83 @@ const createOrder = async () => {
 
 <hr>
 
+## 8.2 React-Router-Dom hooks notes
+
+
+**useNavigate**
+
+- used to navigate to other pages
+- provides a function to navigate to other pages
+
+```jsx
+import { useNavigate } from "react-router-dom";
+
+function LoginPage() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // Perform login logic...
+    navigate("/dashboard"); // Redirect to dashboard
+  };
+
+  return <button onClick={handleLogin}>Log In</button>;
+}
+```
+
+**useParams**
+
+- used to get route parameters
+- `<Route path="/user/:id" element={<UserProfile />} />`
+- `const { id } = useParams();`
+
+**useSearchParams**
+
+- used to get optional parameters
+- `http://app.com/?search=mysearch`
+
+```jsx
+const [searchParams] = useSearchParams();
+const search = searchParams.get('search');
+```
+
 # 9: Automated Tests
+
+**most popular packages for automated testing**
+
+- `Jest`
+- `Vitest`
+
+**Downloading vitest**
+
+- `npm i --save-dev vitest`
+- `--save-dev` means the package is only for development
+
+**Unit test**
+
+- test one piece of the code
+
+## 9.1 vitest
+
+> it(nameOfTest, callback) : create a test
+> expect(function) : check if result is correct
+> toBe(expectedResult) : expect method, check result of function
+
+```jsx
+import { it, expect } from 'vitest';
+import { formatMoney } from './money';
+
+it('format 1999 cents as $19.99', () => {
+    expect(formatMoney(1999)).toBe('$19.99');
+});
+```
+
+**How to run vitest**
+
+- `npx vitest`
+- runs all the tests ending with file extension `.test.js`
+
+**More vitest functions**
+
+> describe(nameOfTestSuite, callback) : groups tests together
+
+- test suite : group of tests
