@@ -2,6 +2,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router';
 import { formatMoney } from "../../utils/money";
 
+
 function PaymentSummary({ paymentSummary, loadCart }) {
     const navigate = useNavigate();
 
@@ -48,6 +49,7 @@ function PaymentSummary({ paymentSummary, loadCart }) {
                     <button 
                         className="place-order-button button-primary"
                         onClick={createOrder}
+                        data-testid="place-order-button"
                     >
                         Place your order
                     </button>
