@@ -13,7 +13,7 @@ describe('HomePage component', () => {
     beforeEach(() => {
         loadCart = vi.fn();
 
-        axios.get.mockImplementation( async (urlPath) => {
+        axios.get.mockImplementation(async (urlPath) => {
             if (urlPath === '/api/products') {
                 return {
                     data: [
@@ -78,29 +78,35 @@ describe('HomePage component', () => {
 
         const user = userEvent.setup();
 
-        // click first button
+        // change first quantity to 2 then click first button
+        const firstSelector = within(productContainers[0]).getByTestId('quantity-selector');
+        await user.selectOptions(firstSelector, '2');
+
         const firstButton = within(productContainers[0]).getByTestId('add-to-cart-button');
         await user.click(firstButton);
 
         expect(axios.post).toHaveBeenNthCalledWith(
-            1, 
+            1,
             '/api/cart-items',
             {
-                productId : "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-                quantity : 1
+                productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+                quantity: 2
             }
         );
 
-        // click second button
+        // change quantity of second item then click second button
+        const secondSelector = within(productContainers[1]).getByTestId('quantity-selector')
+        await user.selectOptions(secondSelector, '3');
+
         const secondButton = within(productContainers[1]).getByTestId('add-to-cart-button');
         await user.click(secondButton);
 
-                expect(axios.post).toHaveBeenNthCalledWith(
-            2, 
+        expect(axios.post).toHaveBeenNthCalledWith(
+            2,
             '/api/cart-items',
             {
-                productId : "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-                quantity : 1
+                productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+                quantity: 3
             }
         );
 
