@@ -2243,3 +2243,152 @@ describe('', () => {
   })
 })
 ```
+
+## 9.5 Mock the implementation
+
+- make mocks do whatever we want
+- for example
+- axios.get is meant to return some data
+- by mocking the implementation
+- we make axios return whatever we want
+
+```jsx
+axios.get.mockImplementation(( /*api get parameters*/ ) => {
+    // it will run the code here
+});
+```
+
+**Memory router**
+
+- when component has any `<Link>` components
+- it typically requires the code to have `<BrowserRouter>`
+- to simulate this in tests
+- react-router provides `<MemoryRouter>`
+- wrap the rendered component in `<MemoryRouter>`
+
+
+```jsx
+import { it, expect, describe, vi, beforeEach } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
+import userEvent from '@testing-library/user-event';
+import axios from 'axios';
+import HomePage from './HomePage';
+
+// mock axios
+vi.mock('axios');
+
+describe('HomePage component', () => {
+    let loadCart;
+
+    beforeEach(() => {
+        loadCart = vi.fn();
+
+        // since axios.get must return a promise to be awaited
+        // add the async keyword to make it return a promise
+        axios.get.mockImplementation( async (urlPath) => {
+            if (urlPath === '/api/products') {
+                return {
+                    data: [ /* insert data here */ ]
+                }
+            }
+        });
+    });
+
+    it('displays the products correct', () => {
+        render(
+            <MemoryRouter>
+                <HomePage cart={[]} loadCart={loadCart} />
+            </MemoryRouter>
+        );
+    })
+})
+```
+
+**finding elements loaded asynchronously**
+
+- since each product is loaded asynchronously (by fetching from DB)
+- you must wait for the page to load first then only get the element
+- use `findAllByTestId` instead of `getAllByTestId`
+- `findAllByTestId` is asynchronous
+- use async/await
+
+<br>
+
+- when dealing with multiple components
+- such as a list of productContainers
+- and you want to search a specific container
+- use the `within()` function
+- from `@testing-library/react`
+
+```jsx
+import { it, expect, describe, vi, beforeEach } from 'vitest';
+import { render, screen, within } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
+// import userEvent from '@testing-library/user-event';
+import axios from 'axios';
+import HomePage from './HomePage';
+
+vi.mock('axios');
+
+describe('HomePage component', () => {
+    let loadCart;
+
+    beforeEach(() => {
+        loadCart = vi.fn();
+
+        axios.get.mockImplementation( async (urlPath) => {
+            if (urlPath === '/api/products') {
+                return {
+                    data: [
+                        {
+                            id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+                            image: "images/products/athletic-cotton-socks-6-pairs.jpg",
+                            name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
+                            rating: {
+                                stars: 4.5,
+                                count: 87
+                            },
+                            priceCents: 1090,
+                            keywords: ["socks", "sports", "apparel"]
+                        },
+                        {
+                            id: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+                            image: "images/products/intermediate-composite-basketball.jpg",
+                            name: "Intermediate Size Basketball",
+                            rating: {
+                                stars: 4,
+                                count: 127
+                            },
+                            priceCents: 2095,
+                            keywords: ["sports", "basketballs"]
+                        }
+                    ]
+                }
+            }
+        });
+    });
+
+    it('displays the products correct', async () => {
+        render(
+            <MemoryRouter>
+                <HomePage cart={[]} loadCart={loadCart} />
+            </MemoryRouter>
+        );
+
+        const productContainers = await screen.findAllByTestId('product-container');
+
+        expect(productContainers.length).toBe(2);
+
+        expect(
+            within(productContainers[0])
+                .getByText('Black and Gray Athletic Cotton Socks - 6 Pairs')
+        ).toBeInTheDocument();
+
+        expect(
+            within(productContainers[1])
+                .getByText('Intermediate Size Basketball')
+        ).toBeInTheDocument();
+    })
+})
+```
