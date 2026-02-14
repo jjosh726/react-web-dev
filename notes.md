@@ -2033,9 +2033,9 @@ const search = searchParams.get('search');
 
 ## 9.1 vitest
 
-> it(nameOfTest, callback) : create a test
-> expect(function) : check if result is correct
-> toBe(expectedResult) : expect method, check result of function
+- it(nameOfTest, callback) : create a test
+- expect(function) : check if result is correct
+- - toBe(expectedResult) : expect method, check result of function
 
 ```jsx
 import { it, expect } from 'vitest';
@@ -2053,6 +2053,132 @@ it('format 1999 cents as $19.99', () => {
 
 **More vitest functions**
 
-> describe(nameOfTestSuite, callback) : groups tests together
+- describe(nameOfTestSuite, callback) : groups tests together
 
 - test suite : group of tests
+
+## 9.2 Integration test
+
+- test multiple units of code working together
+- such as testing react components
+- use file extension `.test.jsx`
+
+<br>
+
+- when testing a react component
+- render the component and check the result
+- example: `render(<Product />)`
+
+<hr>
+
+1. install below 
+
+```powershell
+npm install --save-dev @testing-library/react@16.3.0 @testing-library/jest-dom@6.6.3 @testing-library/user-event@14.6.1 jsdom@26.1.0
+```
+
+2. create `vitest.config.file` in the root directory of project
+
+```jsx
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './setupTests.js',
+  }
+});
+```
+
+3. create `setupTests.js`
+
+```jsx
+import '@testing-library/jest-dom';
+```
+
+- this adds methods to `expect()`
+
+<hr>
+
+## 9.3 @testing-library/react
+
+**terms**
+
+- mock : create a fake version of function
+
+**@testing-library/react imports**
+- render : render component in a fake website
+- screen : check the fake web page
+- - .getByText() : searches the screen for text
+- - .getByTestId() : searches for an element with this id in its dataset
+
+```jsx
+<img 
+  className="product-image"
+  data-testid="product-image"
+  src={image} 
+/>
+```
+
+**vitest**
+
+- vi.fn() : vitest mock function
+
+**vitest new expect methods**
+
+- expect().toBeInTheDocument()
+- expect().toHaveAttribute()
+- expect().toHaveTextContent()
+
+**example of combining all the above functions**
+
+```jsx
+import { it, expect, describe, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import Product from './Product';
+
+describe('Product Component', () => {
+    
+    it('displays the product details correctly', () => {
+        const product = {
+            id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+            image: "images/products/athletic-cotton-socks-6-pairs.jpg",
+            name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
+            rating: {
+                stars: 4.5,
+                count: 87
+            },
+            priceCents: 1090,
+            keywords: ["socks", "sports", "apparel"]
+        }
+    
+        const loadCart = vi.fn();
+
+        render(<Product product={product} loadCart={loadCart} />)
+
+        expect(
+            screen.getByText('Black and Gray Athletic Cotton Socks - 6 Pairs')
+        ).toBeInTheDocument();
+
+        expect(
+            screen.getByText('$10.90')
+        ).toBeInTheDocument();
+
+        expect(
+            screen.getByTestId('product-image')
+        ).toHaveAttribute('src', 'images/products/athletic-cotton-socks-6-pairs.jpg');
+
+        expect(
+            screen.getByTestId('product-rating')
+        ).toHaveAttribute('src', 'images/ratings/rating-45.png')
+
+        expect(
+            screen.getByText('87')
+        ).toBeInTheDocument();
+    });
+
+});
+```
