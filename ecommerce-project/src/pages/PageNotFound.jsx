@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import './pageNotFound.css'
+import './PageNotFound.css'
 
 function PageNotFound({ cart }) {
     return (

@@ -3,7 +3,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import Header from '../components/Header';
 import trackingFavicon from '../assets/images/tracking-favicon.png'
-import './trackingPage.css'
+import './TrackingPage.css'
 import { useEffect, useState } from 'react';
 
 function TrackingPage({ cart }) {

@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import checkoutLockIcon from '../../assets/images/icons/checkout-lock-icon.png'
-import './checkoutHeader.css'
+import './CheckoutHeader.css'
 
 function CheckoutHeader({ cart }) {
     let totalQuantity = 0;
