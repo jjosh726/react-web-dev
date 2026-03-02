@@ -1,7 +1,7 @@
 import { NavLink, useNavigate, useSearchParams } from 'react-router';
 import searchIcon from '../assets/images/icons/search-icon.png'
 import cartIcon from '../assets/images/icons/cart-icon.png'
-import './Header.css'
+import './header.css'
 import { useState } from 'react';
 
 function Header({ cart }) {

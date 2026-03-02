@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 
 import ordersFavicon from '../../assets/images/orders-favicon.png'
 
-import './OrdersPage.css'
+import './ordersPage.css'
 import OrderHeader from './OrderHeader';
 import OrderDetailsGrid from './OrderDetailsGrid';
 

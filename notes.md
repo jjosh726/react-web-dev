@@ -2392,3 +2392,15 @@ describe('HomePage component', () => {
     })
 })
 ```
+
+# 10: Deployment
+
+**Deployment**
+
+- how to put a React app on the Internet
+- AWS (Amazon Web Services)
+
+**AWS**
+
+- a collection of services
+- that help put stuff on the internet

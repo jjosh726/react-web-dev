@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import CheckoutHeader from './CheckoutHeader';
 import OrderSummary from './OrderSummary';
 import cartFavicon from '../../assets/images/cart-favicon.png'
-import './CheckoutPage.css'
+import './checkoutPage.css'
 import PaymentSummary from './PaymentSummary';
 
 function CheckoutPage({ cart, loadCart }) {

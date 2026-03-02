@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from '../../components/Header.jsx';
 import axios from 'axios';
 import homeFavicon from '../../assets/images/home-favicon.png'
-import './HomePage.css'
+import './homePage.css'
 import ProductsGrid from './ProductsGrid.jsx';
 import { useSearchParams } from 'react-router';
 

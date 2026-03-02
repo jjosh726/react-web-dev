@@ -8,7 +8,7 @@ import OrdersPage from './pages/orders/OrdersPage'
 import TrackingPage from './pages/TrackingPage'
 import PageNotFound from './pages/PageNotFound'
 
-import './App.css'
+import './app.css'
 
 window.axios = axios;
 
